@@ -5,5 +5,14 @@ from sqlalchemy import create_engine
 
 Base = declarative_base()
 
-#PLACE YOUR TABLE SETUP INFORMATION HERE
+#PLACE YOUR TABLE SETUP INFORMATION HEREc
 
+class Users(Base):
+    __tablename__ = 'person'
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    email = Column(String)
+    password = Column(String)
+    birthday = Column(Date)
+
+	
