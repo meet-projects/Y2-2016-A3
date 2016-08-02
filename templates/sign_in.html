@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
-	<!-- Latest compiled and minified CSS --> 
+    <title></title>
+    <!-- Latest compiled and minified CSS --> 
 <link rel="stylesheet"href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> 
 <!-- jQuery library --> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
@@ -11,10 +11,10 @@
 <meta name=“viewport” content=“width= device-width, initialscale=1.0”> 
 </head>
 <body>
-<form action="{{url_for('sign In')}}">
+<form action="{{url_for('signin')}}" method="POST">
 <table>
-	<tr>Email:<input type="email" name="email"></tr>
-	<tr>Password:<input type="text" name="password"></tr>
+    <tr>Email:<input type="email" name="email"></tr>
+    <tr>Password:<input type="text" name="password"></tr>
 </table>
 </form>
 </body>

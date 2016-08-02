@@ -14,5 +14,3 @@ class Users(Base):
     email = Column(String)
     password = Column(String)
     birthday = Column(Date)
-
-	
