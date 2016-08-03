@@ -14,8 +14,7 @@ session = DBSession()
 Mahmoud=Users(
     name = 'Mahmoud Khalifa',
     email = 'mahmoud.khalifa00@gmail.com',
-    password = '123',
-    birthday = '24/11/2000',
+    password = '123'
     )
 session.add(Mahmoud)
 session.commit()

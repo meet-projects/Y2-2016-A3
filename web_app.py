@@ -24,6 +24,19 @@ def signin():
 @app.route('/')
 def main():
     return render_template('sign_in.html')
-
+@app.route('/signup/',methods=['GET','POST'])
+def signup():
+    if(request.method=='GET'):
+        return render_template('sign_up.html')
+    email=request.form['email']
+    password=request.form['password']
+    name=request.form['name']
+    user1=session.query(Users).filter_by(email=email).first()
+    if(user1!=None):
+        return render_template('sign_up.html')
+    user=Users(name=name,email=email,password=password)
+    session.add(user)
+    session.commit()
+    return render_template('main_page.html',user=user)
 if __name__ == '__main__':
     app.run(debug=True)
