@@ -8,7 +8,7 @@ app = Flask(__name__)
 from database_setup import Base,Users
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-engine = create_engine('sqlite:///project.db')
+engine = create_engine('sqlite:///crudlab.db')
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
@@ -18,8 +18,8 @@ def signin():
     email=request.form['email']
     password=request.form['password']
     user=session.query(Users).filter_by(email=email).filter_by(password=password).first()
-    if(user!=null):
-        return render_template('main_page.html')
+    if(user!=None):
+        return render_template('main_page.html',user=user)
     return render_template('sign_in.html')
 @app.route('/')
 def main():
