@@ -13,3 +13,21 @@ class Users(Base):
     name = Column(String)
     email = Column(String)
     password = Column(String)
+class Articles(Base):
+    __tablename__='articles'
+    id = Column(Integer, primary_key=True)
+    title = Column(String)
+    description = Column(String)
+    explanation = Column(String)
+class Picture(Base):
+    __tablename__='pictures'
+    id = Column(Integer,primary_key=True)
+    name = Column(String)
+    articleid= Column(String)
+class Comments(Base):
+    __tablename__='comments'
+    id= Column(Integer,primary_key=True)
+    comment = Column(String)
+    email = Column(String)
+    date = Column(String)
+    articleid =Column(String)

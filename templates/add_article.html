@@ -1,0 +1,12 @@
+{% extends "index.html" %}
+{% block body %}
+<form action="{{ url_for('add_article') }}" method="POST">
+<table class="table">
+<tr><td>Title</td><td><input type="text" name="title"></td></tr>
+<tr><td>Description</td><td><input type="text" name="description"></td></tr>
+<tr><td>Explanation</td><td><textarea name="explanation" cols="14" rows="12"></textarea></td></tr>
+<tr><td><input type="submit" class="btn btn-success" name="add_aricle" value="add article"><a href="{{ url_for('main') }}" class="btn btn-danger">Cancel</a></td></tr>
+</table>
+</form>
+
+{% endblock %}

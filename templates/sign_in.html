@@ -1,18 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-    <!-- Latest compiled and minified CSS --> 
-<link rel="stylesheet"href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> 
-<!-- jQuery library --> 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
-<!-- Latest compiled JavaScript --> 
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
-<meta name=“viewport” content=“width= device-width, initialscale=1.0”> 
-</head>
-<body>
+{% extends "index.html" %}
+{% block body %}
 <form action="{{ url_for('signin') }}" method="POST">
-<table class="table">
+<table class="table" align="center" width ="300" height ="400">
     <tr><td>Email:<input type="email" name="email"></tr>
     <tr><td>Password:<input type="text" name="password"></td></tr>
     <tr><td><input type="submit" class="btn btn-success" value="Log in"> <br><p>Don't have an account?</p><a class="btn btn-info" href="{{ url_for('signup') }}"> sign up!!</a></td></tr>
@@ -21,5 +10,4 @@
 
 </table>
 </form>
-</body>
-</html>
+{% endblock %}

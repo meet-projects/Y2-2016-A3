@@ -1,15 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-	<link rel="stylesheet"href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> 
-<!-- jQuery library --> 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
-<!-- Latest compiled JavaScript --> 
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
-<meta name=“viewport” content=“width= device-width, initialscale=1.0”> 
-</head>
-<body>
+{% extends "index.html" %}
+{% block body %}
 <form action="{{ url_for('signup') }}" method="POST" >
 <table class="table" align="center">
 <tr><td>Name</td><td><input type="text" name="name"></td></tr>
@@ -17,7 +7,7 @@
 <tr><td>ConfirmPassword</td><td><input type="password" name="confirmpassword"></td></tr>
 <tr><td>Email</td><td><input type="email" name="email"></td></tr>
 <tr><td><input type="submit" name="signup" value="sign up"></td></tr>
+{% if user != None %}<tr><td><div style="color:red">{{ user.name }}<div></td></tr>{% endif %}
 </table>
 </form>
-</body>
-</html>
+{% endblock %}
