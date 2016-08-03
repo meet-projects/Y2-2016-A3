@@ -5,7 +5,7 @@ app = Flask(__name__)
 ### Add your tables here!
 # For example:
 # from database_setup import Base, Potato, Monkey
-from database_setup import Base
+from database_setup import Base,Users
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 engine = create_engine('sqlite:///project.db')
@@ -17,9 +17,10 @@ session = DBSession()
 def signin():
     email=request.form['email']
     password=request.form['password']
-    user=session.query(Users).filter_by(email=email).first()
+    user=session.query(Users).filter_by(email=email).filter_by(password=password).first()
     if(user!=null):
         return render_template('main_page.html')
+    return render_template('sign_in.html')
 @app.route('/')
 def main():
     return render_template('sign_in.html')

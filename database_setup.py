@@ -8,9 +8,9 @@ Base = declarative_base()
 #PLACE YOUR TABLE SETUP INFORMATION HEREc
 
 class Users(Base):
-    __tablename__ = 'person'
+    __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
     name = Column(String)
     email = Column(String)
     password = Column(String)
-    birthday = Column(Date)
+    birthday = Column(String)

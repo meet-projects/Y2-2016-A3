@@ -11,10 +11,12 @@
 <meta name=“viewport” content=“width= device-width, initialscale=1.0”> 
 </head>
 <body>
-<form action="{{url_for('signin')}}" method="POST">
+<form action="{{ url_for('signin') }}" method="POST">
 <table>
-    <tr>Email:<input type="email" name="email"></tr>
-    <tr>Password:<input type="text" name="password"></tr>
+    <tr><td>Email:<input type="email" name="email"></tr>
+    <tr><td>Password:<input type="text" name="password"></td></tr>
+    <tr><td><input type="submit" value="Log in"></td></tr>
+
 </table>
 </form>
 </body>

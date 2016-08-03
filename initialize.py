@@ -1,7 +1,7 @@
 from sqlalchemy.orm import relationship, sessionmaker
 from sqlalchemy import create_engine
 
-from database_setup import Base, Person
+from database_setup import Base, Users
 
 engine = create_engine('sqlite:///crudlab.db')
 Base.metadata.create_all(engine)
@@ -11,3 +11,11 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 # You can add some starter data for your database here.
+Mahmoud=Users(
+    name = 'Mahmoud Khalifa',
+    email = 'mahmoud.khalifa00@gmail.com',
+    password = '123',
+    birthday = '24/11/2000',
+    )
+session.add(Mahmoud)
+session.commit()
