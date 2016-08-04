@@ -42,7 +42,10 @@ def signin():
 
 @app.route('/')
 def main():
-    return render_template('sign_in.html')
+    if flasksession.get('userid')==True:
+        return redirect(url_for('mainpage',))
+    else:
+        return render_template('sign_in.html')
 
 @app.route('/add_article/',methods=['GET','POST'])
 def add_article():
