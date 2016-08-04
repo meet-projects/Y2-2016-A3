@@ -10,7 +10,7 @@ body {
   color: white;
   background-color: black;
 }
-input{
+input,textarea{
   color:black;
 }
 html {
