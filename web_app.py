@@ -15,6 +15,15 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
+
+@app.route('/<string:articleid>/')
+def article(articleid):
+    article=session.query(Articles).filter_by(id=articleid).first()
+    return render_template('full_article.html',article=article)
+@app.route('/loggedout')
+def log_out():
+    flasksession['userid']=None
+    return render_template('sign_in.html')
 @app.route('/mainpage/')
 def mainpage():
     user=session.query(Users).filter_by(id=flasksession['userid']).first()
@@ -35,7 +44,12 @@ def signin():
 
 @app.route('/')
 def main():
-    return render_template('sign_in.html')
+    articles=session.query(Articles).all()
+    return render_template('main_page1.html',articles=articles)
+@app.route('/main')
+def main1():
+    user=session.query(Users).filter_by(id=session['userid']).first()
+    return render_template('main_page.html',user=user)
 
 @app.route('/add_article/',methods=['GET','POST'])
 def add_article():
@@ -69,7 +83,8 @@ def signup():
     user=Users(name=name,email=email,password=password)
     session.add(user)
     session.commit()
-    return render_template('main_page.html',user=user)
+    articles=session.query(Articles).all()
+    return render_template('main_page.html',user=user,articles=articles)
 if __name__ == '__main__':
     app.run(debug=True)
 

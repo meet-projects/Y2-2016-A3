@@ -1,0 +1,12 @@
+{% extends "default.html" %}
+{% block body %}
+{%for article in articles%}
+<div>
+	<h1><a href="{{url_for('article',articleid=article.id)}}">{{article.title}}</a></h1>
+	<h2>{{article.description}}</h2>
+	<br>
+	<br>
+	<br>
+</div>
+{%endfor%}
+{% endblock %}
