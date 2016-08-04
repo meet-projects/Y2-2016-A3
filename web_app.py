@@ -15,6 +15,12 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
+@app.route('/mainpage/')
+def mainpage():
+    user=session.query(Users).filter_by(id=flasksession['userid']).first()
+    articles = session.query(Articles).all()
+    return render_template('main_page.html',user=user, articles=articles)
+
 @app.route('/signin/',methods=['GET','POST'])
 def signin():
     if(request.method=='GET'):
@@ -24,11 +30,13 @@ def signin():
     user=session.query(Users).filter_by(email=email).filter_by(password=password).first()
     flasksession['userid'] = user.id
     if(user!=None):
-        return render_template('main_page.html',user=user)
+        return redirect(url_for('mainpage',))
     return render_template('sign_in.html')
+
 @app.route('/')
 def main():
     return render_template('sign_in.html')
+
 @app.route('/add_article/',methods=['GET','POST'])
 def add_article():
     if request.method=='GET':
@@ -44,8 +52,7 @@ def add_article():
     session.add(article)
     session.commit()
     user=session.query(Users).filter_by(id=flasksession['userid']).first()
-    return render_template('main_page.html',user=user)
-
+    return redirect(url_for('mainpage'))
 @app.route('/signup/',methods=['GET','POST'])
 def signup():
     if(request.method=='GET'):
