@@ -48,6 +48,19 @@ def main():
     articles=session.query(Articles).all()
     return render_template('main_page1.html',articles=articles)
 
+@app.route('/',methods=['POST'])
+def search():
+
+    word=request.form['search']
+    Articles=session.query(Articles).all()
+    articles1=[]
+    for article in Articles:
+        val = js.call('find', article.description, word)
+        val1 = js.call('find', article.explanation, word)
+        val2 = js.call('find', article.title, word)
+        if(val!=-1 or val1!=-1 val2!=-1):
+            articles1.append(article)
+    return render_template("main_page.html",Articles=articles1)
 @app.route('/main')
 def main1():
     user=session.query(Users).filter_by(id=flasksession['userid']).first()
@@ -56,15 +69,15 @@ def main1():
 @app.route('/add_article/',methods=['GET','POST'])
 def add_article():
     if request.method=='GET':
-    	return render_template('add_article.html')
+        return render_template('add_article.html')
     title=request.form['title']
     description=request.form['description']
     explanation=request.form['explanation']
     article=Articles(
-    	title=title,
-    	description=description,
-    	explanation=explanation,
-    	)
+        title=title,
+        description=description,
+        explanation=explanation,
+        )
     session.add(article)
     session.commit()
     user=session.query(Users).filter_by(id=flasksession['userid']).first()
