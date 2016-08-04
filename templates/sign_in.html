@@ -1,20 +1,25 @@
 {% extends "default.html" %}
 {% block body %}
 
- <p class="intro-text">Your opertunity to share what you have to say, and release it the the world.
-<br>Created by team A.</p>
-<a href="#about" class="btn btn-circle page-scroll">
-<i class="fa fa-angle-double-down animated"></i>
-</a>
-
 <form action="{{ url_for('signin') }}" method="POST">
-<table class="table" align="center" width ="300" height ="400">
+    <div class="container">
+    	<div class="col-md-offset-3 col-md-5">
+
+      	<form class="form-signin">
+        <h2 class="form-signin-heading"><center>Please sign in</center></h2>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputPassword" class="sr-only" >Password</label>
+        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+        <input type="submit" class="btn btn-lg btn-primary btn-block" value="Sign in">
+      </form>
+      </div>
+    </div> 
+<!--<table class="table" align="center" width ="300" height ="400">
     <tr><td>Email:<input type="email" name="email"></tr>
     <tr><td>Password:<input type="text" name="password"></td></tr>
-    <tr><td><input type="submit" class="btn btn-success" value="Log in"> <br><p>Don't have an account?</p><a class="btn btn-info" href="{{ url_for('signup') }}"> sign up!!</a></td></tr>
+    <tr><td><input type="submit" class="btn btn-success" value="Log in"> <br><p>Don't have an account?</p><a class="btn btn-info" href="{{ url_for('signup') }}"> sign up!!</a></td></tr>-->
 
 
-
-</table>
 </form>
 {% endblock %}

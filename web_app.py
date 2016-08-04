@@ -46,7 +46,7 @@ def signin():
 @app.route('/')
 def main():
     articles=session.query(Articles).all()
-    return render_template('main_page1.html',articles=articles)
+    return render_template('main_page1.html',articles=articles,user=None)
 
 @app.route('/',methods=['POST'])
 def search():
@@ -58,7 +58,7 @@ def search():
         val = js.call('find', article.description, word)
         val1 = js.call('find', article.explanation, word)
         val2 = js.call('find', article.title, word)
-        if(val!=-1 or val1!=-1 val2!=-1):
+        if(val!=-1 or val1!=-1 or val2!=-1):
             articles1.append(article)
     return render_template("main_page.html",Articles=articles1)
 @app.route('/main')

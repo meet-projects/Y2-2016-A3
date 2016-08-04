@@ -122,11 +122,11 @@ a:focus {
 }
 .intro {
   display: table;
-  width: 100%;
+  width: 50%;
   height: auto;
   padding: 100px 0;
   text-align: center;
-  color: white;
+  color: black;
   background: url(../img/intro-bg.jpg) no-repeat bottom center scroll;
   background-color: black;
   -webkit-background-size: cover;

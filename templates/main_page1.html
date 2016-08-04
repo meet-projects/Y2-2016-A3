@@ -1,12 +1,50 @@
 {% extends "default.html" %}
 {% block body %}
-{%for article in articles%}
 <div>
-	<h1><a href="{{url_for('article',articleid=article.id)}}">{{article.title}}</a></h1>
-	<h2>{{article.description}}</h2>
-	<br>
-	<br>
-	<br>
 </div>
-{%endfor%}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div id="sign_in">
+	<form action="{{ url_for('signin') }}" method="POST">
+    <div class="container">
+    	<div class="col-md-offset-3 col-md-5">
+
+      	<form class="form-signin">
+        <h2 class="form-signin-heading"><center>Please sign in</center></h2>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputPassword" class="sr-only" >Password</label>
+        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+        <input type="submit" class="btn btn-lg btn-primary btn-block" value="Sign in">
+      </form>
+      </div>
+    </div> 
+</form>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div id="sign_up">
+<form action="{{ url_for('signup') }}" method="POST" >
+<table class="table" width="50%" align="center">
+<tr><td>Name</td><td><input type="text" name="name"></td></tr>
+<tr><td>Password</td><td><input type="password" name="password"></td></tr>
+<tr><td>ConfirmPassword</td><td><input type="password" name="confirmpassword"></td></tr>
+<tr><td>Email</td><td><input type="email" name="email"></td></tr>
+<tr><td><input type="submit" class="btn btn-success" name="signup" value="sign up"></td></tr>
+{% if user != None %}<tr><td><div style="color:red">{{ user.name }}<div></td></tr>
+{% endif %}
+</table>
+</form>
+
+</div>
 {% endblock %}
