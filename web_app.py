@@ -15,10 +15,11 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
-@app.route('/<int:articleid>/')
+@app.route('/article/<int:articleid>/')
 def article(articleid):
     article=session.query(Articles).filter_by(id=articleid).first()
     return render_template('full_article.html',article=article)
+
 @app.route('/loggedout')
 def log_out():
     flasksession['userid']=None
@@ -39,7 +40,7 @@ def signin():
     user=session.query(Users).filter_by(email=email).filter_by(password=password).first()
     flasksession['userid'] = user.id
     if(user!=None):
-        return redirect(url_for('mainpage',))
+        return redirect(url_for('mainpage'))
     return render_template('sign_in.html')
 
 @app.route('/')
@@ -49,7 +50,7 @@ def main():
 
 @app.route('/main')
 def main1():
-    user=session.query(Users).filter_by(id=session['userid']).first()
+    user=session.query(Users).filter_by(id=flasksession['userid']).first()
     return render_template('main_page.html',user=user)
 
 @app.route('/add_article/',methods=['GET','POST'])

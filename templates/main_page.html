@@ -2,26 +2,21 @@
 {% block body %}
 <center>
 <h1>Hello {{ user.name }}</h1>
-
-<form action="{{ url_for('add_article') }}">
-<input type="submit" name="add_article" class="btn btn-success" value="add article">
 <div>
 {%for article in articles%}
 <div>
-	<h1><a href="{{url_for('article',articleid=article.id)}}">{{article.title}}</a></h1>
-	<h2>{{article.description}}</h2>
-	<br>
-	<br>
-	<br>
+	<h4><a href="{{url_for('article',articleid=article.id)}}">{{article.title}}</a></h4>
+	{{article.description}}
+	<br><br>
 </div>
 
 {%endfor%}
 
+<form action="{{ url_for('add_article') }}">
+<input type="submit" name="add_article" class="btn btn-success" value="add article">
 
-<p>
-	
-</p>
-</div>
 </form>
+</div>
+
 </center>
 {% endblock %}
