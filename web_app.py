@@ -1,5 +1,7 @@
 from flask import Flask, render_template,request, redirect, url_for
+from flask import session as flasksession
 app = Flask(__name__)
+app.secret_key = 'sdfljk348u389t4ejke8te89yhi'
 
 # SQLAlchemy stuff
 ### Add your tables here!
@@ -18,6 +20,7 @@ def signin():
     email=request.form['email']
     password=request.form['password']
     user=session.query(Users).filter_by(email=email).filter_by(password=password).first()
+    flasksession['userid'] = user.id
     if(user!=None):
         return render_template('main_page.html',user=user)
     return render_template('sign_in.html')
@@ -38,7 +41,8 @@ def add_article():
     	)
     session.add(article)
     session.commit()
-    return render_template('main_page.html')
+    user=session.query(Users).filter_by(id=flasksession['userid']).first()
+    return render_template('main_page.html',user=user)
 
 @app.route('/signup/',methods=['GET','POST'])
 def signup():
@@ -59,3 +63,4 @@ def signup():
     return render_template('main_page.html',user=user)
 if __name__ == '__main__':
     app.run(debug=True)
+
