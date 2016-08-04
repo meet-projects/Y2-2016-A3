@@ -1,8 +1,21 @@
 {% extends "index.html" %}
 {% block body %}
 <h1>Hello {{ user.name }}</h1>
+
+
+{%for article in articles%}
+<div>
+	{{article.title}}
+</div>
+{%endfor%}
+
 <form action="{{ url_for('add_article') }}">
 <input type="submit" name="add_article" class="btn btn-success" value="add_article">
+<div>
+<p>
+	
+</p>
+</div>
 </form>
-{% endblock %}
 
+{% endblock %}

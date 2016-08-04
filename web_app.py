@@ -13,17 +13,25 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
+@app.route('/mainpage/<int:user_id>')
+def mainpage(user_id):
+    user=session.query(Users).filter_by(id=user_id).first()
+    articles = session.query(Articles).all()
+    return render_template('main_page.html',user=user, articles=articles)
+
 @app.route('/signin/',methods=['POST'])
 def signin():
     email=request.form['email']
     password=request.form['password']
     user=session.query(Users).filter_by(email=email).filter_by(password=password).first()
     if(user!=None):
-        return render_template('main_page.html',user=user)
+        return redirect(url_for('mainpage', user_id=user.id))
     return render_template('sign_in.html')
+
 @app.route('/')
 def main():
     return render_template('sign_in.html')
+
 @app.route('/add_article/',methods=['GET','POST'])
 def add_article():
     if request.method=='GET':
