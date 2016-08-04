@@ -28,8 +28,10 @@ def mainpage():
     articles = session.query(Articles).all()
     return render_template('main_page.html',user=user, articles=articles)
 
-@app.route('/signin/',methods=['POST'])
+@app.route('/signin/',methods=['GET','POST'])
 def signin():
+    if(request.method=='GET'):
+        return render_template('sign_in.html')
     email=request.form['email']
     password=request.form['password']
     user=session.query(Users).filter_by(email=email).filter_by(password=password).first()
