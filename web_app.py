@@ -15,6 +15,13 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
+@app.route('/article/<int:article_id>/')
+def view_article(article_id):
+    article=session.query(Articles).filter_by(id=article_id).first()
+    return render_template('article.html', article=article)
+
+
+
 @app.route('/mainpage/')
 def mainpage():
     user=session.query(Users).filter_by(id=flasksession['userid']).first()
