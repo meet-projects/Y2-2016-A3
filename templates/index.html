@@ -33,7 +33,7 @@
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand page-scroll" href="#page-top">
+                <a class="navbar-brand page-scroll" href="{{url_for('mainpage')}}">
                     <a href="{{ url_for('main1') }}"><i class="fa fa-play-circle"></i> <span class="light">WE</span> R 1</a
                 </a>
             </div>
@@ -59,23 +59,21 @@
     </nav>
 
     <!-- Intro Header -->
-    <header class="intro">
+    <header class="intro" id="header-title">
         <div class="intro-body">
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <h1 class="brand-heading">We R 1</h1>
-                        <p class="intro-text">Your opertunity to share what you have to say, and release it the the world.
-                            <br>Created by team A.</p>
-                        <a href="#about" class="btn btn-circle page-scroll">
-                            <i class="fa fa-angle-double-down animated"></i>
-                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </header>
-    {% block body %}{% endblock %}
+
+    <div id="index-content-div">
+        {% block body %}{% endblock %}
+    </div>
     <!-- Contact Section -->
     <section id="contact" class="container content-section text-center">
         <div class="row">

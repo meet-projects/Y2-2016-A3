@@ -1,5 +1,12 @@
 {% extends "default.html" %}
 {% block body %}
+
+ <p class="intro-text">Your opertunity to share what you have to say, and release it the the world.
+<br>Created by team A.</p>
+<a href="#about" class="btn btn-circle page-scroll">
+<i class="fa fa-angle-double-down animated"></i>
+</a>
+
 <form action="{{ url_for('signin') }}" method="POST">
 <table class="table" align="center" width ="300" height ="400">
     <tr><td>Email:<input type="email" name="email"></tr>
