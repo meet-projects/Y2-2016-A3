@@ -1,7 +1,7 @@
 $(document).ready(function(){
-	function find(Article,str2)
+	function find(article,str2)
 	{
-		return Article.indexof(str2)!=-1;
+		return article.indexof(str2)!=-1;
 	 
 	}	
 });

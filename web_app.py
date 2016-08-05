@@ -50,17 +50,17 @@ def main():
 
 @app.route('/',methods=['POST'])
 def search():
-
+    user=session.query(Users).filter_by(id=flasksession['userid']).first()
     word=request.form['search']
-    Articles=session.query(Articles).all()
+    articles=session.query(Articles).all()
     articles1=[]
-    for article in Articles:
+    for article in articles:
         val = js.call('find', article.description, word)
         val1 = js.call('find', article.explanation, word)
         val2 = js.call('find', article.title, word)
         if(val!=-1 or val1!=-1 or val2!=-1):
             articles1.append(article)
-    return render_template("main_page.html",Articles=articles1)
+    return render_template("main_page.html",Articles=articles1,user=user)
 @app.route('/main')
 def main1():
     user=session.query(Users).filter_by(id=flasksession['userid']).first()
@@ -81,7 +81,7 @@ def add_article():
     session.add(article)
     session.commit()
     user=session.query(Users).filter_by(id=flasksession['userid']).first()
-    return redirect(url_for('mainpage'))
+    return redirect(url_for('mainpage',user=user))
 @app.route('/signup/',methods=['GET','POST'])
 def signup():
     if(request.method=='GET'):
