@@ -14,7 +14,10 @@ engine = create_engine('sqlite:///crudlab.db')
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
-
+def find(article,str1):
+    if((article.title not in str1)and(article.description not in str1)and(article.explanation not in str1)):
+        return -1
+    return 1
 @app.route('/article/<int:articleid>/')
 def article(articleid):
     article=session.query(Articles).filter_by(id=articleid).first()
@@ -49,16 +52,15 @@ def main():
     return render_template('main_page1.html',articles=articles,user=None)
 
 @app.route('/',methods=['POST'])
+
 def search():
+    global js
     user=session.query(Users).filter_by(id=flasksession['userid']).first()
     word=request.form['search']
     articles=session.query(Articles).all()
     articles1=[]
     for article in articles:
-        val = js.call('find', article.description, word)
-        val1 = js.call('find', article.explanation, word)
-        val2 = js.call('find', article.title, word)
-        if(val!=-1 or val1!=-1 or val2!=-1):
+        if(find(article,word)):
             articles1.append(article)
     return render_template("main_page.html",Articles=articles1,user=user)
 @app.route('/main')

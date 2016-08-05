@@ -21,6 +21,11 @@
 Region:<input type="text" name="search"></h1><input type="submit">
 </form>
 </div>
-
 </center>
+{% for article in Articles %}
+<a href="{{ url_for('article',articleid=article.id)}}"><h1>{{article.title}}</h1></a>
+{{article.description}}
+<br>
+<br>
+{% endfor %}
 {% endblock %}
