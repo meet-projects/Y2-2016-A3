@@ -10,11 +10,11 @@
 <br>
 <br>
 <h1>
-{% for i in (comments.length)+1 %}
-{users[i]}}
-{{comments[i]}}
+{% for i in comments %}
+
+{{i.comment}}
 <br>
-<br>cd
+<br>
 {% endfor %}
 </h1>
 {% endblock %}

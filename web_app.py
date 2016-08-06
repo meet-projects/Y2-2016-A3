@@ -75,7 +75,7 @@ def search():
     articles=session.query(Articles).all()
     articles1=[]
     for article in articles:
-        if(find(article,word)):
+        if(find(article,word)!=-1):
             articles1.append(article)
     return render_template("main_page.html",Articles=articles1,user=user)
 @app.route('/main')
@@ -110,11 +110,11 @@ def signup():
     password=request.form['password']
     confirmpassword=request.form['confirmpassword']
     if(confirmpassword!=password):
-        return render_template('sign_up.html',user=Users(name="Passwords are not the same!!"))
+        return render_template('main_page1.html',user=Users(name="Passwords are not the same!!"))
     name=request.form['name']
     user1=session.query(Users).filter_by(email=email).first()
     if(user1!=None):
-        return render_template('sign_up.html',user=Users(name="Email already used!!"))
+        return render_template('main_page1.html',user=Users(name="Email already used!!"))
     user=Users(name=name,email=email,password=password)
     session.add(user)
     session.commit()
