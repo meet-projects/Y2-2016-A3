@@ -11,10 +11,21 @@ app.secret_key = 'sdfljk348u389t4ejke8te89yhi'
 from database_setup import Base,Users,Articles,Picture,Comments
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+import shutil
 engine = create_engine('sqlite:///crudlab.db')
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
+def save_uploaded_file (form_field, upload_dir):
+    form = cgi.FieldStorage()
+    if not form.has_key(form_field): return
+    fileitem = form[form_field]
+    if not fileitem.file: return
+
+    outpath = os.path.join(upload_dir, fileitem.filename)
+
+    with open(outpath, 'wb') as fout:
+        shutil.copyfileobj(fileitem.file, fout, 100000)
 def find(article,str1):
     str1=str1.upper()
     if(article.region not in str1):
@@ -35,7 +46,7 @@ def article(articleid):
 @app.route('/loggedout')
 def log_out():
     flasksession['userid']=None
-    return render_template('sign_in.html')
+    return render_template('main_page1.html',user=None)
 
 @app.route('/mainpage/')
 def mainpage():
@@ -96,6 +107,8 @@ def add_article():
     description=request.form['description']
     explanation=request.form['explanation']
     region=request.form['region']
+    save_uploaded_file()
+    print(request.form['pic'])
     region=region.upper()
     article=Articles(
         title=title,
