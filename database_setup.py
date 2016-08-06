@@ -19,6 +19,7 @@ class Articles(Base):
     title = Column(String)
     description = Column(String)
     explanation = Column(String)
+    region = Column(String)
 class Picture(Base):
     __tablename__='pictures'
     id = Column(Integer,primary_key=True)
@@ -28,6 +29,6 @@ class Comments(Base):
     __tablename__='comments'
     id= Column(Integer,primary_key=True)
     comment = Column(String)
-    email = Column(String)
+    userid = Column(String)
     date = Column(String)
     articleid =Column(String)

@@ -1,5 +1,6 @@
 from flask import Flask, render_template,request, redirect, url_for
 from flask import session as flasksession
+from datetime import datetime
 app = Flask(__name__)
 app.secret_key = 'sdfljk348u389t4ejke8te89yhi'
 
@@ -15,13 +16,17 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 def find(article,str1):
-    if((article.title not in str1)and(article.description not in str1)and(article.explanation not in str1)):
+    str1=str1.upper()
+    if(article.region not in str1):
         return -1
     return 1
 @app.route('/article/<int:articleid>/')
 def article(articleid):
+    userid=flasksession['userid']
     article=session.query(Articles).filter_by(id=articleid).first()
-    return render_template('full_article.html',article=article)
+    comments=session.query(Comments).filter_by(articleid=articleid).all()
+    user=session.query(Users).filter_by(id=userid).first()
+    return render_template('full_article.html',article=article,user=user,comments=comments)
 
 @app.route('/loggedout')
 def log_out():
@@ -48,13 +53,23 @@ def signin():
 
 @app.route('/')
 def main():
-    articles=session.query(Articles).all()
-    return render_template('main_page1.html',articles=articles,user=None)
-
+    return render_template('main_page1.html',user=None)
+@app.route('/<int:articleid>',methods=['POST'])
+def add_comment(articleid):
+    userid=flasksession['userid']
+    user=session.query(Users).filter_by(id=userid).first()
+    article=session.query(Articles).filter_by(id=articleid).first()
+    date=datetime.today()
+    comment=Comments(articleid=articleid,userid=userid,date=date,comment=request.form['comment'])
+    session.add(comment)
+    session.commit()
+    comments=session.query(Comments).filter_by(articleid=articleid).all()
+    users=[]
+    for comment in comments:
+        users.append(session.query(Users).filter_by(id=comment.userid).first())
+    return render_template("full_article.html",users=users,user=user,article=article,comments=comments)
 @app.route('/',methods=['POST'])
-
 def search():
-    global js
     user=session.query(Users).filter_by(id=flasksession['userid']).first()
     word=request.form['search']
     articles=session.query(Articles).all()
@@ -75,10 +90,13 @@ def add_article():
     title=request.form['title']
     description=request.form['description']
     explanation=request.form['explanation']
+    region=request.form['region']
+    region=region.upper()
     article=Articles(
         title=title,
         description=description,
         explanation=explanation,
+        region=region
         )
     session.add(article)
     session.commit()
