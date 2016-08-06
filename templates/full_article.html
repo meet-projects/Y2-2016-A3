@@ -9,12 +9,24 @@
 <br>
 <br>
 <br>
-<h1>
-{% for i in comments %}
+<font color="Green">
+{% for i in range(lencomments) %}
 
-{{i.comment}}
-<br>
-<br>
-{% endfor %}
+{% if i%2!=0 %}
+<div class="jumbotron">
+{% endif %}
+<h1>
+{{users[i].name}}
 </h1>
+<br>
+<h2>
+&nbsp;&nbsp;{{comments[i].comment}}
+</h2>
+<br>
+<br>
+{% if i%2!=0 %}
+</div>
+{% endif %}
+{% endfor %}
+</font>
 {% endblock %}

@@ -25,8 +25,12 @@ def article(articleid):
     userid=flasksession['userid']
     article=session.query(Articles).filter_by(id=articleid).first()
     comments=session.query(Comments).filter_by(articleid=articleid).all()
+    users=[]
+    for comment in comments:
+        users.append(session.query(Users).filter_by(id=comment.userid).first())
     user=session.query(Users).filter_by(id=userid).first()
-    return render_template('full_article.html',article=article,user=user,comments=comments)
+    lencomments=len(comments)
+    return render_template('full_article.html',article=article,users=users,user=user,comments=comments,lencomments=lencomments)
 
 @app.route('/loggedout')
 def log_out():
@@ -67,7 +71,8 @@ def add_comment(articleid):
     users=[]
     for comment in comments:
         users.append(session.query(Users).filter_by(id=comment.userid).first())
-    return render_template("full_article.html",users=users,user=user,article=article,comments=comments)
+    lencomments=len(comments)
+    return render_template("full_article.html",users=users,user=user,article=article,comments=comments,lencomments=lencomments)
 @app.route('/',methods=['POST'])
 def search():
     user=session.query(Users).filter_by(id=flasksession['userid']).first()
