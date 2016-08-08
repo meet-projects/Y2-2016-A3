@@ -18,4 +18,11 @@ input,textarea{
 }
 #submit{
 	align-self: center;
+
+}
+.container{
+	text-align: center;
+}
+<h1>{
+	font-size: 40pt;
 }
