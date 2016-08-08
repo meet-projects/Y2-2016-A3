@@ -48,8 +48,8 @@ def mainpage():
 def signin():
     if(request.method=='GET'):
         return render_template('sign_in.html')
-    email=request.form['email']
-    password=request.form['password']
+    email=request.form['email1']
+    password=request.form['password1']
     user=session.query(Users).filter_by(email=email).filter_by(password=password).first()
     flasksession['userid'] = user.id
     if(user!=None):
