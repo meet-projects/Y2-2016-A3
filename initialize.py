@@ -18,3 +18,12 @@ Mahmoud=Users(
     )
 session.add(Mahmoud)
 session.commit()
+noura=Users(
+    name = 'noura barakat',
+    email = 'nourabarakat05@gmail.com',
+    password = '111'
+    )
+
+session.add(noura)
+session.commit()
+
