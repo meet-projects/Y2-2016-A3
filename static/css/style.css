@@ -11,3 +11,10 @@ input,textarea{
     height: 300px;
 }
 
+.hi {
+	font-size: 18px;
+
+}
+#submit{
+	align-self: center;
+}

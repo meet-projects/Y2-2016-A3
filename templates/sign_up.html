@@ -1,4 +1,46 @@
-{% extends "default.html" %}
-{% block body %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title> sign up </title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
+<meta charset="utf-8">  
+<!-- Making Bootstrap Responsive -- > 
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+<!-- Latest compiled and minified CSS --> 
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> 
+<!-- jQuery library --> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+<!-- Latest compiled JavaScript --> 
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
+</head> 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<body background="https://www.walldevil.com/wallpapers/a79/backgrounds-wallpapers-designs-black-motif-graphic-halloween-photo-creative-graphics.jpg">
+<form action="{{ url_for('signup') }}"  method="POST" >
+<div style="color:white">
+<h2> <center> Join us Now</center></h2>
+<table  width="30%" height=" 70%" align="center">
+<tr><td> <h3 class="hi"> Name </h3><style color: white></style>  </td><td><input type="text" name="name" ></td></tr>
+<tr><td> <h3>Password</h3> <style color: white></style> </td><td><input type="password" name="password"></td></tr>
+<tr><td> <h3> ConfirmPassword </h3><style color: white></style> </td><td> <input type="password" name="confirmpassword">
+</td></tr>
+<tr><td> <h3> Email </h3> <style color: white></style> </td><td><input type="email" name="email" ></td></tr> 
+<br>
+<br>
+<tr><td><div align="right"><input type="submit" class="btn btn-default no" name="signup" value="sign up" id="submit"></div></td></tr>
+</table>
+</div>
+</form>
 
-{% endblock %}
+</div>
+
+</body>
+</html>h
+<div id="sign_up">
+

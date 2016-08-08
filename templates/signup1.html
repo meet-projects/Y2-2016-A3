@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Sign up</title>
+</head>
+<body>
+<h1>Join us now!!</h1>
+<div id="sign_up">
+<form action="{{ url_for('signup') }}" method="POST" >
+<table class="table" width="50%" align="center">
+<tr><td>Name</td><td><input type="text" name="name"></td></tr>
+<tr><td>Password</td><td><input type="password" name="password"></td></tr>
+<tr><td>ConfirmPassword</td><td><input type="password" name="confirmpassword"></td></tr>
+<tr><td>Email</td><td><input type="email" name="email"></td></tr>
+<tr><td><input type="submit" class="btn btn-success" name="signup" value="sign up"></td></tr>
+<tr><td><div style="color:red">{{ user.name }}<div></td></tr>
+</table>
+</form>
+
+</div>
+
+</body>
+</html>

@@ -108,6 +108,12 @@ def add_article():
     session.commit()
     user=session.query(Users).filter_by(id=flasksession['userid']).first()
     return redirect(url_for('mainpage',user=user))
+
+@app.route('/about/')
+def about():
+    return render_template('about.html',user=None)
+
+        
 @app.route('/signup/',methods=['GET','POST'])
 def signup():
     if(request.method=='GET'):
